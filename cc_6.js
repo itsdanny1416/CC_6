@@ -1,4 +1,4 @@
-//cc_6.js
+cc_6.js
 
 class employee {
     constructor(name, age, salary) {
