@@ -1,57 +1,65 @@
-cc_6.js
+// Step 2: Base class
+class Employee {
+  constructor(name, department) {
+    this.name = name;
+    this.department = department;
+  }
 
-class employee {
-    constructor(name, age, salary) {
-        this.name = name;
-        this.age = age;
-        this.salary = salary;
-    }
-    describe() {
-        return `${this.name}, ${this.age} years old, earns ${this.salary} per month.`;
-    }
+  describe() {
+    return `${this.name} works in the ${this.department} department.`;
+  }
 }
 
-// Manager class should not be nested inside employee
-class Manager extends employee {
-    constructor(name, age, salary, department) {
-        super(name, age, salary);
-        this.department = department;
-    }
-    describe() {
-        return `${super.describe()} Manages the ${this.department} department.`;
-    }
+// Step 3: Subclass Manager
+class Manager extends Employee {
+  constructor(name, department, teamSize) {
+    super(name, department);
+    this.teamSize = teamSize;
+  }
+
+  // Override describe()
+  describe() {
+    return `${this.name} manages the ${this.department} department with a team of ${this.teamSize} employees.`;
+  }
 }
-class company {
-    constructor(name) {
-        this.name = name;
-        this.employees = [];
-    }
-    addEmployee(employee) {
-        this.employees.push(employee);
-    }
-    listEmployees() {
-        this.employees.forEach(emp => {
-            console.log(emp.describe());
-        });
-    }
 
-// Create employees
-const emp1 = new employee("John", 30, 3000);
-const emp2 = new employee("Jane", 25, 3500);
+// Step 5: Company class
+class Company {
+  constructor(name) {
+    this.name = name;
+    this.employees = [];
+  }
 
-// Create manager
-const mgr1 = new Manager("Alice", 40, 5000, "Sales");
-const mgr2 = new Manager("Bob", 45, 5500, "Marketing");
+  addEmployee(employee) {
+    this.employees.push(employee);
+  }
 
-console.log(emp1.describe());
-console.log(emp2.describe());
-console.log(mgr1.describe());
+  listEmployees() {
+    console.log(`Employee Directory for ${this.name}:\n`);
+    this.employees.forEach(emp => {
+      console.log(emp.describe());
+    });
+  }
+}
 
+// Step 4 & 6: Real-world workforce
 
-const myCompany = new company("Tech Solutions");
-myCompany.addEmployee(emp1);
-myCompany.addEmployee(emp2);
-myCompany.addEmployee(mgr1);
-myCompany.addEmployee(mgr2);
+// Regular employees
+const emp1 = new Employee("Sophia Johnson", "Engineering");
+const emp2 = new Employee("Liam Martinez", "Marketing");
+const emp3 = new Employee("Ethan Brown", "Sales");
 
-myCompany.listEmployees();
+// Managers
+const mgr1 = new Manager("Olivia Smith", "Engineering", 6);
+const mgr2 = new Manager("Noah Williams", "Sales", 4);
+
+// Create company and add workforce
+const innovateX = new Company("InnovateX");
+innovateX.addEmployee(emp1);
+innovateX.addEmployee(emp2);
+innovateX.addEmployee(emp3);
+innovateX.addEmployee(mgr1);
+innovateX.addEmployee(mgr2);
+
+// List workforce
+innovateX.listEmployees();
