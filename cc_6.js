@@ -60,6 +60,3 @@ innovateX.addEmployee(emp2);
 innovateX.addEmployee(emp3);
 innovateX.addEmployee(mgr1);
 innovateX.addEmployee(mgr2);
-
-// List workforce
-innovateX.listEmployees();
